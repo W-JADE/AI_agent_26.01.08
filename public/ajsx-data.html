@@ -18,11 +18,18 @@
     console.dir(xhr);
 
     // 후속으로 결과를 처리하는 함수
-    xhr.onload = function(i) {
-        console.log(i, xhr.statusText);
+    xhr.onload = function(event) {
+        // console.log(event);
+        console.log(xhr.responseText);
     }
+
     // 요청 할 타겟을 지정
-    xhr.open("GET", BASE_URL+"/", true)
+    xhr.open("POST", BASE_URL+"/", true)
+
+    // 중요: to POST Data like an HTML From
+    // open() 함수 아래에 위치 해야 한다. 
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
     // 실행하라는 신호
     xhr.send()
 
